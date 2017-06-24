@@ -1,12 +1,19 @@
 function deleteStuff(t) {
 	t.card("id").then(function(x) {
-		Trello.cards.get(x.id, {
-			checkItemStates: true,
-			checklists: "all",
-
-		}, function(r) {
-			console.log(r)
-		}, null)
+		t.get('board', 'private', 'deleteToken').then(function(token) {
+			Trello.setToken(token);
+			Trello.cards.get(x.id, {
+				checklists: "all",
+			}, function(result) {
+				result.checklists.forEach(function(checklist) {
+					checklist.checkItems.forEach(function(item) {
+						if(item.state == "complete") {
+							Trello.delete("checklists/"+checklist.id+"/checkItems/"+item.id);
+						}
+					})
+				})
+			}, null)
+		})
 	})
 };
 
