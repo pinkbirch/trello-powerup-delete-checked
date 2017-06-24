@@ -7,7 +7,9 @@
 	"author": "L",
 	"capabilities": [
 		"card-buttons",
-		"callback"
+		"callback",
+		"authorization-status",
+		"show-authorization"
 	],
 	"connectors": {
 		"iframe": {
