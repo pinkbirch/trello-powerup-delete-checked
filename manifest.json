@@ -1,0 +1,16 @@
+{
+	"name": "Delete Checked",
+	"details": "Deletes checked items",
+	"icon": {
+		"url": "./images/icon.svg"
+	},
+	"author": "L",
+	"capabilities": [
+		"card-buttons"
+	],
+	"connectors": {
+		"iframe": {
+			"url": "./index.html"
+		}
+	}
+}
