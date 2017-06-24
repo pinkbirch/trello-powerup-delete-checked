@@ -6,7 +6,8 @@
 	},
 	"author": "L",
 	"capabilities": [
-		"card-buttons"
+		"card-buttons",
+		"callback"
 	],
 	"connectors": {
 		"iframe": {
