@@ -5,13 +5,16 @@ function deleteStuff(t) {
 			Trello.cards.get(x.id, {
 				checklists: "all",
 			}, function(result) {
+				var allProm = [];
 				result.checklists.forEach(function(checklist) {
 					checklist.checkItems.forEach(function(item) {
 						if(item.state == "complete") {
-							Trello.delete("checklists/"+checklist.id+"/checkItems/"+item.id);
+							allProm.push(Trello.delete("checklists/"+checklist.id+"/checkItems/"+item.id));
 						}
 					})
 				})
+				// actually a workaround. ui doesn't always get all updates, reload..
+				Promise.all(allProm).then(function() {t.showCard(x.id);});
 			}, null)
 		})
 	})
