@@ -1,6 +1,12 @@
 function deleteStuff(t) {
-	t.card().then(function(x) {
-		console.log(x);
+	t.card("id").then(function(x) {
+		Trello.cards.get(x.id, {
+			checkItemStates: true,
+			checklists: "all",
+
+		}, function(r) {
+			console.log(r)
+		}, null)
 	})
 };
 
@@ -23,7 +29,7 @@ TrelloPowerUp.initialize({
 		 Trello.authorize({
 		 	type:"popup",
 		 	name:"Delete Checked Items Button",
-		 	interactive:false,
+		 	interactive:true,
 		 	expiration: "never",
 		 	success:function() {
 		 		t.set('board', 'private', 'deleteToken', localStorage["trello_token"]);
